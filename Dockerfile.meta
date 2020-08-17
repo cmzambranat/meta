@@ -15,16 +15,24 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   && installGithub.r -d s-u/unixtools \
 ## Compile R packages
   && install2.r --error --skipinstalled \
+  easyPubMed \
+  ggraph \
   here \
   janitor \
   lemon \
+  metaDigitise \
+  metagear \
+  metafor \
   patchwork \
   piggyback \
+  revtools \
+  robvis \
   scales \
   styler \
   taxadb \
+  tidygraph \
   && installGithub.r elizagrames/litsearchr \
-  && R -e "update.packages(ask = FALSE)"  \
+  && R -e "update.packages(ask = FALSE)" \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds /root/tmp/downloaded_packages
 
 
