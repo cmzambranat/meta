@@ -23,7 +23,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   janitor \
   lemon \
   metaDigitise \
-  metagear \
+  #metagear \
   metafor \
   patchwork \
   piggyback \
