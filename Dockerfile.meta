@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essen
     && rm -rf /var/lib/apt/lists/
 ### R config and packages
 RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
-  &&  echo "CXXFLAGS=-w"  >> /usr/local/lib/R/etc/Makevars.site \
-  &&  echo "MAKEFLAGS=-j$(nproc)"  >> /usr/local/lib/R/etc/Makevars.site \
+  && echo "CXXFLAGS=-w"  >> /usr/local/lib/R/etc/Makevars.site \
+  && echo "MAKEFLAGS=-j$(nproc)"  >> /usr/local/lib/R/etc/Makevars.site \
+  && Rscript -e 'source("http://bioconductor.org/biocLite.R")' -e 'biocLite("EBImage")'
 ## install from github 
   && installGithub.r -d s-u/unixtools \
 ## Compile R packages
@@ -34,7 +35,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   && installGithub.r elizagrames/litsearchr \
   && R -e "update.packages(ask = FALSE)" \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds /root/tmp/downloaded_packages
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R")' -e 'biocLite("EBImage")'
+
 
 
 
