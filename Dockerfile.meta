@@ -24,8 +24,8 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   scales \
   styler \
   taxadb \
-  && installGithub.r rmetaverse/metaverse
-  && R -e "update.packages(ask = FALSE)"  
+  && installGithub.r rmetaverse/metaverse \
+  && R -e "update.packages(ask = FALSE)"  \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds /root/tmp/downloaded_packages
 
 
