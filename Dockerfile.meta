@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essen
 RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   && echo "CXXFLAGS=-w"  >> /usr/local/lib/R/etc/Makevars.site \
   && echo "MAKEFLAGS=-j$(nproc)"  >> /usr/local/lib/R/etc/Makevars.site \
-  && Rscript -e 'requireNamespace("BiocManager"); BiocManager::install();' \
-  && Rscript -e 'requireNamespace("BiocManager"); BiocManager::install("EBImage")' \
+  #&& Rscript -e 'requireNamespace("BiocManager"); BiocManager::install();' \
+  #&& Rscript -e 'requireNamespace("BiocManager"); BiocManager::install("EBImage")' \
 ## install from github 
   && installGithub.r -d s-u/unixtools \
 ## Compile R packages
@@ -26,6 +26,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   janitor \
   lemon \
   metaDigitise \
+  suppdata \
   #metagear \
   metafor \
   patchwork \
@@ -37,6 +38,8 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   taxadb \
   tidygraph \
   && installGithub.r elizagrames/litsearchr \
+  && installGithub.r lockedata/starters \
+  #&& installGithub.r benmarwick/rrtools
   && R -e "update.packages(ask = FALSE)" \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds /root/tmp/downloaded_packages
 
