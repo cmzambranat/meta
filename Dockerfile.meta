@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essen
     openssh-server \
     libgsl-dbg \
     libgsl-dev \
-    libglpk40 \
+    libglpk40 \ 
     curl \
     htop \
     libfftw3-dev \
@@ -23,6 +23,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   && install2.r --error --skipinstalled \
   easyPubMed \
   ggraph \
+  gt \
   here \
   janitor \
   lemon \
@@ -32,6 +33,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   metafor \
   patchwork \
   piggyback \
+  prodigenr \
   revtools \
   robvis \
   scales \
@@ -39,7 +41,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   taxadb \
   tidygraph \
   && installGithub.r elizagrames/litsearchr \
-  && installGithub.r lockedata/starters \
+  #&& installGithub.r lockedata/starters \
   && installGithub.r hrbrmstr/rdatainfo \
   #&& installGithub.r benmarwick/rrtools
   && R -e "update.packages(ask = FALSE)" \
