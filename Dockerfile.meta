@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:latest
+FROM rocker/verse:latest
 MAINTAINER "Carlos Zambrana-Torrelio" zambrana@ecohealthalliance.org
 ## Installs to help install
 RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --allow-unauthenticated --no-install-recommends --no-upgrade \
@@ -9,9 +9,14 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essen
     curl \
     htop \
     libfftw3-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/
-### R config and packages
+    wget \
+  && RSTUDIO_URL="https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.904-amd64.deb" \
+  && wget -q $RSTUDIO_URL \
+  && dpkg -i rstudio-server-*-amd64.deb \
+  && rm rstudio-server-*-amd64.deb \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/
+## R config and packages
 RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   && echo "CXXFLAGS=-w"  >> /usr/local/lib/R/etc/Makevars.site \
   && echo "MAKEFLAGS=-j$(nproc)"  >> /usr/local/lib/R/etc/Makevars.site \
@@ -21,28 +26,25 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   && installGithub.r -d s-u/unixtools \
 ## Compile R packages
   && install2.r --error --skipinstalled \
-  easyPubMed \
-  ggraph \
-  gt \
-  here \
-  janitor \
-  lemon \
-  metaDigitise \
-  suppdata \
-  #metagear \
-  metafor \
-  patchwork \
-  piggyback \
-  prodigenr \
-  revtools \
-  robvis \
-  scales \
-  styler \
-  taxadb \
-  tidygraph \
+    easyPubMed \
+    ggraph \
+    gt \
+    here \
+    janitor \
+    lemon \
+    metaDigitise \
+    suppdata \
+    #metagear \
+    metafor \
+    patchwork \
+    piggyback \
+    prodigenr \
+    revtools \
+    robvis \
+    scales \
+    styler \
+    taxadb \
+    tidygraph \
   && installGithub.r elizagrames/litsearchr \
-  #&& installGithub.r lockedata/starters \
-  && installGithub.r hrbrmstr/rdatainfo \
-  #&& installGithub.r benmarwick/rrtools
   && R -e "update.packages(ask = FALSE)" \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds /root/tmp/downloaded_packages
