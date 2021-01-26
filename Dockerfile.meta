@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essen
     curl \
     htop \
     libfftw3-dev \
+    tcl8.6-dev \
+    tk8.6-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/
 ### R config and packages
