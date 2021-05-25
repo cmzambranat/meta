@@ -2,23 +2,26 @@ FROM rocker/tidyverse:latest
 MAINTAINER "Carlos Zambrana-Torrelio" zambrana@ecohealthalliance.org
 ## Installs to help install
 RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --allow-unauthenticated --no-install-recommends --no-upgrade \
-    openssh-server \
+    curl \
+    htop \
+    imagemagick \
     libgsl-dbg \
     libgsl-dev \
     libglpk40 \ 
-    curl \
-    htop \
+    libgtk2.0-dev \  
     libfftw3-dev \
-    tcl8.6-dev \
-    tk8.6-dev \
-    xvfb \
     libx11-6 \
     libxss1 \
     libxt6 \
     libxext6 \
     libsm6 \
     libice6 \
+    openssh-server \
+    tcl8.6-dev \
+    tk8.6-dev \
+    pkg-config \
     xdg-utils \
+    xvfb \
     x11-apps \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/ \
