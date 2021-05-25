@@ -37,6 +37,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   ggraph \
   ggthemes \
   gt \
+  handlr \
   here \
   janitor \
   lemon \
@@ -55,6 +56,7 @@ RUN echo "CFLAGS=-w" >> /usr/local/lib/R/etc/Makevars.site \
   taxadb \
   tidygraph \
   && installGithub.r elizagrames/litsearchr \
+  && installGithub.r elizagrames/topictagger \
   #&& installGithub.r lockedata/starters \
   #&& installGithub.r hrbrmstr/rdatainfo \
   #&& installGithub.r benmarwick/rrtools
